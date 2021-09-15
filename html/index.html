@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css"
+    </head>
+    <body>
+        <div class="container">
+            <div class="mt-4 card">
+                <h2 class="card-title">eelテスト</h2>
+                <div class="card-body">  
+                    csvファイル名<input id="csv_name" type="text"></input><br/>
+                    検索ワード<input id="search_word" type="text"></input>
+                    <button id="search">検索</button>
+                </div>
+                <input type="file" id="getfilename"></input>
+                <button id="getfilename_button">値取得</button>
+                <input id="filename" type="text" value="" size="50" ></input><br/>
+                <div>
+                    <textarea id="result" class="log-view-area"></textarea>
+                </div>  
+                <script type="text/javascript" src="./eel.js"></script>
+                <script>
+                    search.addEventListener('click', () => {
+                        var searched_word = document.getElementById("search_word").value;
+                        if(searched_word == ""||filename.value ==""){
+                            alert("空欄を埋めてください。");
+                            return false;
+                        }
+                        eel.kimetsu_search(search_word.value,csv_name.value,filename.value)
+                    })
+                    
+
+                    eel.expose(view_log_js)
+                    function view_log_js(text){
+                        result.value += text + "\n"
+                    }
+
+                    getfilename_button.addEventListener('click', () => {
+                        var getfilename = document.getElementById("getfilename").files;
+                        document.getElementById("filename").value = getfilename[0].name
+                    })
+
+                </script>
+            </div>
+        </div>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    </body>
+</html>
